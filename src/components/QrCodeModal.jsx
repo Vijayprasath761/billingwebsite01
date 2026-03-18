@@ -13,7 +13,7 @@ export function QrCodeModal({ qrDataUrl, bill, onClose, onConfirmPayment }) {
         <p className="modal-text">
           Amount: <strong>₹ {bill.total}</strong>
         </p>
-        <img src="vijay prasath.png" alt="Payment QR" className="qr-image" />
+        <img src="/images/vijay prasath.png" alt="Payment QR" className="qr-image" />
         <div className="modal-actions">
           <button className="btn btn-secondary" onClick={onClose}>
             Close
