@@ -16,9 +16,15 @@ export function BillingPanel({ cart, totals, onClearCart, onPaymentInitiated }) 
       createdAt: new Date().toISOString(),
     };
 
-    const qrText = `BILL:${bill.id};TOTAL:${bill.total}`;
+    // Generate UPI payment string with your UPI ID
+    const upiId = "vijayprasath761@okaxis";
+    const merchantName = "Spice Garden";
+    const amount = bill.total;
+    const description = encodeURIComponent(`Bill #${bill.id}`);
+    const upiString = `upi://pay?pa=${upiId}&pn=${merchantName}&am=${amount}&tn=${description}`;
+    
     try {
-      const qrDataUrl = await QRCode.toDataURL(qrText, { margin: 1 });
+      const qrDataUrl = await QRCode.toDataURL(upiString, { margin: 1 });
       onPaymentInitiated(bill, qrDataUrl);
     } catch (err) {
       alert("Failed to generate QR code");
